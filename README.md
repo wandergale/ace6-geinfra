@@ -18,21 +18,39 @@ Dar exemplos
 
 ### 🔧 Instalação
 
-Uma série de exemplos passo-a-passo que informam o que você deve executar para ter um ambiente de desenvolvimento em execução.
-
-Diga como essa etapa será:
-
+## Backend
+1. Precisa ter o Python instalado
+2. Clone o repositório
+```bash
+git clone https://github.com/cpt-ufal-arapiraca/ace6-geinfra.git
 ```
-Dar exemplos
+4. Nagegue até a pasta backend
+```bash
+cd backend
 ```
-
-E repita:
-
+5. Crie um ambiente virtual:
+```bash
+python3 -m venv .env
 ```
-Até finalizar
+Pode-se usar o comando python caso seja o Python 2 instalado. Caso não tenha o módulo venv, pode ser instalado pelo comando informado no erro e executar o comando acima novamente. <br>
+6. Ative o ambiente virtual:
+```bash
+source .env/Scripts/activate
 ```
-
-Termine com um exemplo de como obter dados do sistema ou como usá-los para uma pequena demonstração.
+7. Instale os requirements:
+```bash
+pip install -r requirements.txt
+```
+8. Após estas instalações, navegue até a pasta api
+```bash
+cd backend
+```
+9. Rode o comando a seguir para inicializar o projeto:
+```bash
+py manage.py runserver #Ou python manage.py runserver # no linux e Mac
+```
+10. Acesse o endereço http://127.0.0.1:8000/solicitacoes/ no navegador
+Deve ser possível visualizar a seguinte mensagem: "Hello, world. You're at the polls index."
 
 ## ⚙️ Executando os testes
 
