@@ -37,13 +37,13 @@ Pode-se usar o comando python caso seja o Python 2 instalado. Caso não tenha o 
 ```bash
 source .env/Scripts/activate
 ```
-7. Instale os requirements:
-```bash
-pip install -r requirements.txt
-```
-8. Após estas instalações, navegue até a pasta api
+7. Navegue até a pasta api
 ```bash
 cd backend
+```
+8. Instale os requirements:
+```bash
+pip install -r requirements.txt
 ```
 9. Rode o comando a seguir para inicializar o projeto:
 ```bash
