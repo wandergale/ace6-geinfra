@@ -37,7 +37,7 @@ Pode-se usar o comando python caso seja o Python 2 instalado. Caso não tenha o 
 ```bash
 source .env/Scripts/activate
 ```
-7. Navegue até a pasta api
+7. Navegue até a pasta backend
 ```bash
 cd backend
 ```
@@ -45,10 +45,17 @@ cd backend
 ```bash
 pip install -r requirements.txt
 ```
+
+8. Navegue até a pasta api
+```bash
+cd api
+```
+
 9. Rode o comando a seguir para inicializar o projeto:
 ```bash
 py manage.py runserver #Ou python manage.py runserver # no linux e Mac
 ```
+
 10. Acesse o endereço http://127.0.0.1:8000/solicitacoes/ no navegador
 Deve ser possível visualizar a seguinte mensagem: "Hello, world. You're at the polls index."
 
