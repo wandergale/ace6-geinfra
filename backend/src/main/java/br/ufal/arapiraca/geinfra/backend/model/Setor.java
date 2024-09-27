@@ -35,6 +35,14 @@ public class Setor {
         return true;
     }
 
+    public Setor(){
+        
+    }
+
+    public Setor(String nome){
+        this.nome = nome;
+    }
+
     public Long getId() {
         return id;
     }

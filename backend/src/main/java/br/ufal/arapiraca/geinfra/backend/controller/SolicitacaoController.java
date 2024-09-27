@@ -18,7 +18,7 @@ import br.ufal.arapiraca.geinfra.backend.repository.SetorRepository;
 import br.ufal.arapiraca.geinfra.backend.repository.SolicitacaoRepository;
 import br.ufal.arapiraca.geinfra.backend.repository.UnidadeRepository;
 
-@RequestMapping("/solicitacoes")
+@RequestMapping("/solicitacao")
 public class SolicitacaoController {
 
     @Autowired
@@ -36,7 +36,7 @@ public class SolicitacaoController {
         Solicitacao solicitacao = form.converter(unidadeRepository, setorRepository);
         solicitacaoRepository.save(solicitacao);
 
-        URI uri = uriBuilder.path("/solicitacoes/{id}").buildAndExpand(solicitacao.getId()).toUri();
-        return ResponseEntity.created(uri).body(new Solicitacao());
+        URI uri = uriBuilder.path("/solicitacao/{id}").buildAndExpand(solicitacao.getId()).toUri();
+        return ResponseEntity.created(uri).body(solicitacao);
     }
 }
