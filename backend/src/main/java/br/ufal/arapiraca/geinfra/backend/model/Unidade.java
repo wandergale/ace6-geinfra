@@ -11,6 +11,13 @@ public class Unidade {
     private Long id;
     private String nome;
 
+    public Unidade(String nome) {
+        this.nome = nome;
+    }
+
+    public Unidade() {
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
