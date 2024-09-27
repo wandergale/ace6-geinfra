@@ -2,7 +2,15 @@ package br.ufal.arapiraca.geinfra.backend.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Solicitacao {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nomeSolicitante;
     private String email;
@@ -14,8 +22,11 @@ public class Solicitacao {
     private StatusSolicitacao status = StatusSolicitacao.ENVIADA;
     private String descricao;
     private String servico;
+    @ManyToOne
     private Unidade unidade;
+    @ManyToOne
     private Setor setor;
+    @ManyToOne
     private OrdemServico ordemServico;
 
     @Override

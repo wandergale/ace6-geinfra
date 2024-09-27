@@ -2,11 +2,18 @@ package br.ufal.arapiraca.geinfra.backend.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class OrdemServico {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String numeroOrdem;
     private String TAG;
-    private LocalDateTime dataAbertura;
+    private LocalDateTime dataAbertura = LocalDateTime.now();
     private String equipamento;
     private LocalDateTime inicioServico;
     private LocalDateTime terminoServico;
