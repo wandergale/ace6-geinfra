@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.ufal.arapiraca.geinfra.backend.controller.form.SolicitacaoForm;
 import br.ufal.arapiraca.geinfra.backend.controller.form.UnidadeForm;
-import br.ufal.arapiraca.geinfra.backend.model.Solicitacao;
 import br.ufal.arapiraca.geinfra.backend.model.Unidade;
 import br.ufal.arapiraca.geinfra.backend.repository.UnidadeRepository;
 
