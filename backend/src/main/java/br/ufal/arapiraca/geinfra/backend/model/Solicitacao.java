@@ -15,7 +15,7 @@ public class Solicitacao {
     private String nomeSolicitante;
     private String email;
     private String telefone;
-    private String SIAPE;
+    private String siape;
     private LocalDateTime dataSolicitacao = LocalDateTime.now();
     private String local;
     private String midia;
@@ -28,6 +28,25 @@ public class Solicitacao {
     private Setor setor;
     @ManyToOne
     private OrdemServico ordemServico;
+
+    public Solicitacao(){
+
+    }
+
+
+    public Solicitacao(String nomeSolicitante, String email, String telefone, String siape, String local,
+            String descricao, String servico, Unidade unidade, Setor setor) {
+        this.nomeSolicitante = nomeSolicitante;
+        this.email = email;
+        this.telefone = telefone;
+        this.siape = siape;
+        this.local = local;
+        this.descricao = descricao;
+        this.servico = servico;
+        this.unidade = unidade;
+        this.setor = setor;
+    }
+
 
     @Override
     public int hashCode() {
@@ -86,12 +105,12 @@ public class Solicitacao {
         this.telefone = telefone;
     }
 
-    public String getSIAPE() {
-        return SIAPE;
+    public String getSiape() {
+        return siape;
     }
 
-    public void setSIAPE(String sIAPE) {
-        SIAPE = sIAPE;
+    public void setSiape(String siape) {
+        this.siape = siape;
     }
 
     public LocalDateTime getDataSolicitacao() {
