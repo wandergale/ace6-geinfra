@@ -8,6 +8,8 @@ import org.hibernate.validator.constraints.Length;
 import br.ufal.arapiraca.geinfra.backend.model.Setor;
 import br.ufal.arapiraca.geinfra.backend.model.Solicitacao;
 import br.ufal.arapiraca.geinfra.backend.model.Unidade;
+import br.ufal.arapiraca.geinfra.backend.repository.SetorRepository;
+import br.ufal.arapiraca.geinfra.backend.repository.UnidadeRepository;
 
 public class SolicitacaoForm {
 
@@ -27,9 +29,9 @@ public class SolicitacaoForm {
     @NotNull @NotEmpty 
     private String servico;
     @NotNull @NotEmpty 
-    private Integer unidade;
+    private Long unidade;
     @NotNull @NotEmpty 
-    private Integer setor;
+    private Long setor;
 
     public String getNomeSolicitante() {
         return nomeSolicitante;
@@ -79,22 +81,22 @@ public class SolicitacaoForm {
     public void setServico(String servico) {
         this.servico = servico;
     }
-    public Integer getUnidade() {
+    public Long getUnidade() {
         return unidade;
     }
-    public void setUnidade(Integer unidade) {
+    public void setUnidade(Long unidade) {
         this.unidade = unidade;
     }
-    public Integer getSetor() {
+    public Long getSetor() {
         return setor;
     }
-    public void setSetor(Integer setor) {
+    public void setSetor(Long setor) {
         this.setor = setor;
     }
 
-    public Solicitacao converter(){
-        Unidade unidade = new Unidade();
-        Setor setor = new Setor();
+    public Solicitacao converter(UnidadeRepository unidadeRepository, SetorRepository setorRepository){
+        Unidade unidade = unidadeRepository.getReferenceById(this.unidade);
+        Setor setor = setorRepository.getReferenceById(this.setor);
         return new Solicitacao(nomeSolicitante, email, telefone, siape, local, descricao, servico, unidade, setor);
     }
 }
