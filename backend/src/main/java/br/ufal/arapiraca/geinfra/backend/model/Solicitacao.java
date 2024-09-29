@@ -2,6 +2,7 @@ package br.ufal.arapiraca.geinfra.backend.model;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,14 +21,14 @@ public class Solicitacao {
     private LocalDateTime dataSolicitacao = LocalDateTime.now();
     private String local;
     private String midia;
-    private StatusSolicitacao status = StatusSolicitacao.ENVIADA;
+    private StatusSolicitacaoEnum status = StatusSolicitacaoEnum.ENVIADA;
     private String descricao;
     private String servico;
     @ManyToOne
     private Unidade unidade;
     @ManyToOne
     private Setor setor;
-    @OneToOne(mappedBy = "solicitacao")
+    @OneToOne(mappedBy = "solicitacao", cascade = CascadeType.REMOVE)
     private OrdemServico ordemServico;
 
     public Solicitacao(){
@@ -148,11 +149,11 @@ public class Solicitacao {
         this.midia = midia;
     }
 
-    public StatusSolicitacao getStatus() {
+    public StatusSolicitacaoEnum getStatus() {
         return status;
     }
 
-    public void setStatus(StatusSolicitacao status) {
+    public void setStatus(StatusSolicitacaoEnum status) {
         this.status = status;
     }
 
@@ -195,4 +196,5 @@ public class Solicitacao {
     public void setOrdemServico(OrdemServico ordemServico) {
         this.ordemServico = ordemServico;
     }
+
 }

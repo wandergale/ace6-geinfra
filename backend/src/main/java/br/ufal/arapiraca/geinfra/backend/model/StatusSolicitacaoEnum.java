@@ -1,6 +1,6 @@
 package br.ufal.arapiraca.geinfra.backend.model;
 
-public enum StatusSolicitacao {
+public enum StatusSolicitacaoEnum {
     ENVIADA,
     EM_ANALISE,
     REJEITADA,

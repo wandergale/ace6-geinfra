@@ -1,7 +1,8 @@
 package br.ufal.arapiraca.geinfra.backend.model;
 
-public enum TipoManutencao {
+public enum TipoManutencaoEnum {
     CORRETIVA,
     PREVENTIVA,
-    MELHORIA
+    MELHORIA;
+
 }

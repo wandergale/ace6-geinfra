@@ -13,20 +13,39 @@ public class OrdemServico {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String numeroOrdem;
-    private String TAG;
+    private String tag;
     private LocalDateTime dataAbertura = LocalDateTime.now();
     private String equipamento;
     private LocalDateTime inicioServico;
     private LocalDateTime terminoServico;
     private String descricaoServicoExecutado;
-    private StatusOrdem Status;
+    private StatusOrdemEnum Status = StatusOrdemEnum.ORDEM_GERADA;
     private String materialUtilizado;
     private String executante;
     private String responsavel;
-    private TipoManutencao tipoManutencao;
+    private TipoManutencaoEnum tipoManutencao;
     @OneToOne
     private Solicitacao solicitacao;
     
+    public OrdemServico(){
+        
+    }
+    
+    public OrdemServico(String numeroOrdem, String tag, String equipamento, LocalDateTime inicioServico,
+            LocalDateTime terminoServico, String descricaoServicoExecutado, String materialUtilizado, String executante,
+            String responsavel, TipoManutencaoEnum tipoManutencao, Solicitacao solicitacao) {
+        this.numeroOrdem = numeroOrdem;
+        this.tag = tag;
+        this.equipamento = equipamento;
+        this.inicioServico = inicioServico;
+        this.terminoServico = terminoServico;
+        this.descricaoServicoExecutado = descricaoServicoExecutado;
+        this.materialUtilizado = materialUtilizado;
+        this.executante = executante;
+        this.responsavel = responsavel;
+        this.tipoManutencao = tipoManutencao;
+        this.solicitacao = solicitacao;
+    }
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -63,11 +82,11 @@ public class OrdemServico {
     public void setNumeroOrdem(String numeroOrdem) {
         this.numeroOrdem = numeroOrdem;
     }
-    public String getTAG() {
-        return TAG;
+    public String getTag() {
+        return tag;
     }
-    public void setTAG(String tAG) {
-        TAG = tAG;
+    public void setTag(String tag) {
+        this.tag = tag;
     }
     public LocalDateTime getDataAbertura() {
         return dataAbertura;
@@ -99,10 +118,10 @@ public class OrdemServico {
     public void setDescricaoServicoExecutado(String descricaoServicoExecutado) {
         this.descricaoServicoExecutado = descricaoServicoExecutado;
     }
-    public StatusOrdem getStatus() {
+    public StatusOrdemEnum getStatus() {
         return Status;
     }
-    public void setStatus(StatusOrdem status) {
+    public void setStatus(StatusOrdemEnum status) {
         Status = status;
     }
     public String getMaterialUtilizado() {
@@ -123,10 +142,10 @@ public class OrdemServico {
     public void setResponsavel(String responsavel) {
         this.responsavel = responsavel;
     }
-    public TipoManutencao getTipoManutencao() {
+    public TipoManutencaoEnum getTipoManutencao() {
         return tipoManutencao;
     }
-    public void setTipoManutencao(TipoManutencao tipoManutencao) {
+    public void setTipoManutencao(TipoManutencaoEnum tipoManutencao) {
         this.tipoManutencao = tipoManutencao;
     }
     public Solicitacao getSolicitacao() {

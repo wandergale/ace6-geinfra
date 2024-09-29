@@ -3,7 +3,7 @@ package br.ufal.arapiraca.geinfra.backend.controller.dto;
 import java.time.LocalDateTime;
 
 import br.ufal.arapiraca.geinfra.backend.model.Solicitacao;
-import br.ufal.arapiraca.geinfra.backend.model.StatusSolicitacao;
+import br.ufal.arapiraca.geinfra.backend.model.StatusSolicitacaoEnum;
 
 public class SolicitacaoDTO {
     private Long id;
@@ -14,7 +14,7 @@ public class SolicitacaoDTO {
     private LocalDateTime dataSolicitacao;
     private String local;
     private String midia;
-    private StatusSolicitacao status;
+    private StatusSolicitacaoEnum status;
     private String descricao;
     private String servico;
     private Long unidade;
@@ -48,7 +48,7 @@ public class SolicitacaoDTO {
     public String getMidia() {
         return midia;
     }
-    public StatusSolicitacao getStatus() {
+    public StatusSolicitacaoEnum getStatus() {
         return status;
     }
     public String getDescricao() {

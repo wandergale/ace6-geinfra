@@ -1,13 +1,10 @@
 package br.ufal.arapiraca.geinfra.backend.controller.form;
 
-import java.util.Optional;
 import org.hibernate.validator.constraints.Length;
 
 import br.ufal.arapiraca.geinfra.backend.model.Setor;
 import br.ufal.arapiraca.geinfra.backend.model.Solicitacao;
 import br.ufal.arapiraca.geinfra.backend.model.Unidade;
-import br.ufal.arapiraca.geinfra.backend.repository.SetorRepository;
-import br.ufal.arapiraca.geinfra.backend.repository.UnidadeRepository;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
@@ -94,17 +91,7 @@ public class SolicitacaoForm {
         this.setor = setor;
     }
 
-    public Solicitacao converter(UnidadeRepository unidadeRepository, SetorRepository setorRepository){
-        Unidade unidade = new Unidade();
-        Setor setor = new Setor();
-        Optional<Unidade> uni = unidadeRepository.findById(this.unidade);
-        if(uni.isPresent()){
-            unidade = uni.get();       
-        }
-        Optional<Setor> set = setorRepository.findById(this.unidade);
-        if(set.isPresent()){
-            setor = set.get();       
-        }
+    public Solicitacao converter(Unidade unidade, Setor setor){
         return new Solicitacao(nomeSolicitante, email, telefone, siape, local, descricao, servico, unidade, setor);
     }
 }
