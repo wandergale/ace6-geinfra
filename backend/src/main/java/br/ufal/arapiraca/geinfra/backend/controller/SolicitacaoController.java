@@ -2,14 +2,15 @@ package br.ufal.arapiraca.geinfra.backend.controller;
 
 import java.net.URI;
 
-import javax.transaction.Transactional;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.ufal.arapiraca.geinfra.backend.controller.form.SolicitacaoForm;
@@ -18,6 +19,7 @@ import br.ufal.arapiraca.geinfra.backend.repository.SetorRepository;
 import br.ufal.arapiraca.geinfra.backend.repository.SolicitacaoRepository;
 import br.ufal.arapiraca.geinfra.backend.repository.UnidadeRepository;
 
+@RestController
 @RequestMapping("/solicitacao")
 public class SolicitacaoController {
 
@@ -32,7 +34,7 @@ public class SolicitacaoController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<Solicitacao> cadastrar(@RequestBody @Valid SolicitacaoForm form, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<Solicitacao> cadastrar(@RequestBody @Validated SolicitacaoForm form, UriComponentsBuilder uriBuilder){
         Solicitacao solicitacao = form.converter(unidadeRepository, setorRepository);
         solicitacaoRepository.save(solicitacao);
 

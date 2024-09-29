@@ -2,10 +2,11 @@ package br.ufal.arapiraca.geinfra.backend.model;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class OrdemServico {
@@ -23,6 +24,8 @@ public class OrdemServico {
     private String executante;
     private String responsavel;
     private TipoManutencao tipoManutencao;
+    @OneToOne
+    private Solicitacao solicitacao;
     
     @Override
     public int hashCode() {
@@ -125,5 +128,12 @@ public class OrdemServico {
     }
     public void setTipoManutencao(TipoManutencao tipoManutencao) {
         this.tipoManutencao = tipoManutencao;
+    }
+    public Solicitacao getSolicitacao() {
+        return solicitacao;
+    }
+    public void setSolicitacao(Solicitacao solicitacao) {
+        this.solicitacao = solicitacao;
     }    
+    
 }

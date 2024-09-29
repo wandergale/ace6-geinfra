@@ -2,11 +2,12 @@ package br.ufal.arapiraca.geinfra.backend.model;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Solicitacao {
@@ -26,7 +27,7 @@ public class Solicitacao {
     private Unidade unidade;
     @ManyToOne
     private Setor setor;
-    @ManyToOne
+    @OneToOne(mappedBy = "solicitacao")
     private OrdemServico ordemServico;
 
     public Solicitacao(){
@@ -45,6 +46,16 @@ public class Solicitacao {
         this.servico = servico;
         this.unidade = unidade;
         this.setor = setor;
+    }
+    public Solicitacao(String nomeSolicitante, String email, String telefone, String siape, String local,
+            String descricao, String servico) {
+        this.nomeSolicitante = nomeSolicitante;
+        this.email = email;
+        this.telefone = telefone;
+        this.siape = siape;
+        this.local = local;
+        this.descricao = descricao;
+        this.servico = servico;
     }
 
 
