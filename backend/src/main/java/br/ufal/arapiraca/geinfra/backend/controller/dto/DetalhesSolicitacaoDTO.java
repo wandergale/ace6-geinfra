@@ -1,13 +1,11 @@
 package br.ufal.arapiraca.geinfra.backend.controller.dto;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import br.ufal.arapiraca.geinfra.backend.model.Solicitacao;
 import br.ufal.arapiraca.geinfra.backend.model.StatusSolicitacaoEnum;
 
-public class SolicitacaoDTO {
+public class DetalhesSolicitacaoDTO {
     private Long id;
     private String nomeSolicitante;
     private String email;
@@ -21,8 +19,9 @@ public class SolicitacaoDTO {
     private String servico;
     private Long unidade;
     private Long setor;
-    
-    public SolicitacaoDTO(Solicitacao solicitacao){
+    private Long ordemServico;
+
+    public DetalhesSolicitacaoDTO(Solicitacao solicitacao) {
         this.id = solicitacao.getId();
         this.nomeSolicitante = solicitacao.getNomeSolicitante();
         this.email = solicitacao.getEmail();
@@ -36,48 +35,64 @@ public class SolicitacaoDTO {
         this.servico = solicitacao.getServico();
         this.unidade = solicitacao.getUnidade().getId();
         this.setor = solicitacao.getSetor().getId();
+        this.ordemServico = solicitacao.getOrdemServico().getId();
     }
+
     public Long getId() {
         return id;
     }
+
     public String getNomeSolicitante() {
         return nomeSolicitante;
     }
+
     public String getEmail() {
         return email;
     }
+
     public String getTelefone() {
         return telefone;
     }
+
     public String getSiape() {
         return siape;
     }
+
     public LocalDateTime getDataSolicitacao() {
         return dataSolicitacao;
     }
+
     public String getLocal() {
         return local;
     }
+
     public String getMidia() {
         return midia;
     }
+
     public StatusSolicitacaoEnum getStatus() {
         return status;
     }
+
     public String getDescricao() {
         return descricao;
     }
+
     public String getServico() {
         return servico;
     }
+
     public Long getUnidade() {
         return unidade;
     }
+
     public Long getSetor() {
         return setor;
     }
 
-    public static List<SolicitacaoDTO> converter(List<Solicitacao> lista){
-        return lista.stream().map(SolicitacaoDTO::new).collect(Collectors.toList());
+    public Long getOrdemServico() {
+        return ordemServico;
     }
+
+    
 }
