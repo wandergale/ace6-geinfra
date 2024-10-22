@@ -19,7 +19,7 @@ public class OrdemServico {
     private LocalDateTime inicioServico;
     private LocalDateTime terminoServico;
     private String descricaoServicoExecutado;
-    private StatusOrdemEnum Status = StatusOrdemEnum.ORDEM_GERADA;
+    private StatusOrdemEnum status = StatusOrdemEnum.ORDEM_GERADA;
     private String materialUtilizado;
     private String executante;
     private String responsavel;
@@ -119,10 +119,10 @@ public class OrdemServico {
         this.descricaoServicoExecutado = descricaoServicoExecutado;
     }
     public StatusOrdemEnum getStatus() {
-        return Status;
+        return status;
     }
     public void setStatus(StatusOrdemEnum status) {
-        Status = status;
+        this.status = status;
     }
     public String getMaterialUtilizado() {
         return materialUtilizado;
