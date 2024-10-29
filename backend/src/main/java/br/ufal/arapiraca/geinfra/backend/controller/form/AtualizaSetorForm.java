@@ -17,7 +17,7 @@ public class AtualizaSetorForm {
         return new Setor(nome);
     }
 
-    public Setor atualizar(Long id, Setor setor) {
+    public Setor atualizar(Setor setor) {
 		setor.setNome(nome);
 		return setor;
 	}

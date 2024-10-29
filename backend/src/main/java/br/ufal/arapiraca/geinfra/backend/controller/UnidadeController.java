@@ -62,7 +62,7 @@ public class UnidadeController {
     public ResponseEntity<UnidadeDTO> atualizar(@PathVariable Long id, @RequestBody AtualizaUnidadeForm form) {
         Optional<Unidade> optional = unidadeRepository.findById(id);
 		if(optional.isPresent()) {
-			Unidade unidade = form.atualizar(id, optional.get());
+			Unidade unidade = form.atualizar(optional.get());
 			return ResponseEntity.ok(new UnidadeDTO(unidade));
 		}
 		return ResponseEntity.notFound().build();

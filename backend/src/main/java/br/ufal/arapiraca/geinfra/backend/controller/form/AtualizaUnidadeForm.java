@@ -17,7 +17,7 @@ public class AtualizaUnidadeForm {
         return new Unidade(nome);
     }
 
-    public Unidade atualizar(Long id, Unidade unidade) {
+    public Unidade atualizar(Unidade unidade) {
 		unidade.setNome(nome);
 		return unidade;
 	}

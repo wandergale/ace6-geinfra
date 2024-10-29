@@ -61,7 +61,7 @@ public class SetorController {
     public ResponseEntity<SetorDTO> atualizar(@PathVariable Long id, @RequestBody AtualizaSetorForm form) {
         Optional<Setor> optional = setorRepository.findById(id);
 		if(optional.isPresent()) {
-			Setor setor = form.atualizar(id, optional.get());
+			Setor setor = form.atualizar(optional.get());
 			return ResponseEntity.ok(new SetorDTO(setor));
 		}
 		return ResponseEntity.notFound().build();
