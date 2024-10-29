@@ -16,10 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.ufal.arapiraca.geinfra.backend.controller.dto.UnidadeDTO;
+import br.ufal.arapiraca.geinfra.backend.controller.form.AtualizaUnidadeForm;
 import br.ufal.arapiraca.geinfra.backend.controller.form.UnidadeForm;
 import br.ufal.arapiraca.geinfra.backend.model.Unidade;
 import br.ufal.arapiraca.geinfra.backend.repository.UnidadeRepository;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 @RestController
 @RequestMapping("/unidade")
@@ -30,12 +33,12 @@ public class UnidadeController {
 
      @PostMapping
     @Transactional
-    public ResponseEntity<Unidade> cadastrar(@RequestBody @Valid UnidadeForm form, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<UnidadeDTO> cadastrar(@RequestBody @Valid UnidadeForm form, UriComponentsBuilder uriBuilder){
         Unidade unidade = form.converter();
         unidadeRepository.save(unidade);
 
         URI uri = uriBuilder.path("/unidade/{id}").buildAndExpand(unidade.getId()).toUri();
-        return ResponseEntity.created(uri).body(unidade);
+        return ResponseEntity.created(uri).body(new UnidadeDTO(unidade));
     }
 
     @GetMapping("/{id}")
@@ -52,5 +55,16 @@ public class UnidadeController {
         List<Unidade> lista = unidadeRepository.findAll();
         
         return UnidadeDTO.converter(lista);
+    }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<UnidadeDTO> atualizar(@PathVariable Long id, @RequestBody AtualizaUnidadeForm form) {
+        Optional<Unidade> optional = unidadeRepository.findById(id);
+		if(optional.isPresent()) {
+			Unidade unidade = form.atualizar(optional.get());
+			return ResponseEntity.ok(new UnidadeDTO(unidade));
+		}
+		return ResponseEntity.notFound().build();
     }
 }

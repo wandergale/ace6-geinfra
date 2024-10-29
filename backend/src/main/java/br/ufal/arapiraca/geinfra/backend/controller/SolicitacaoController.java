@@ -11,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.ufal.arapiraca.geinfra.backend.controller.dto.DetalhesSolicitacaoDTO;
 import br.ufal.arapiraca.geinfra.backend.controller.dto.SolicitacaoDTO;
+import br.ufal.arapiraca.geinfra.backend.controller.form.AtualizaSolicitacaoForm;
 import br.ufal.arapiraca.geinfra.backend.controller.form.SolicitacaoForm;
 import br.ufal.arapiraca.geinfra.backend.model.Setor;
 import br.ufal.arapiraca.geinfra.backend.model.Solicitacao;
@@ -42,7 +44,7 @@ public class SolicitacaoController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<Solicitacao> cadastrar(@RequestBody @Validated SolicitacaoForm form, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<SolicitacaoDTO> cadastrar(@RequestBody @Validated SolicitacaoForm form, UriComponentsBuilder uriBuilder){
         Unidade unidade = new Unidade();
         Setor setor = new Setor();
 
@@ -50,7 +52,6 @@ public class SolicitacaoController {
         if(uni.isPresent()){
             unidade = uni.get();       
         }else{
-            System.out.println("Apareceu aqui");
             return ResponseEntity.badRequest().build();
         }
 
@@ -65,7 +66,7 @@ public class SolicitacaoController {
         solicitacaoRepository.save(solicitacao);
 
         URI uri = uriBuilder.path("/solicitacao/{id}").buildAndExpand(solicitacao.getId()).toUri();
-        return ResponseEntity.created(uri).body(solicitacao);
+        return ResponseEntity.created(uri).body(new SolicitacaoDTO(solicitacao));
     }
 
     @GetMapping("/{id}")
@@ -82,5 +83,33 @@ public class SolicitacaoController {
         List<Solicitacao> lista = solicitacaoRepository.findAll();
         
         return SolicitacaoDTO.converter(lista);
+    }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<SolicitacaoDTO> atualizar(@PathVariable Long id, @RequestBody AtualizaSolicitacaoForm form) {
+        Unidade unidade = new Unidade();
+        Setor setor = new Setor();
+        System.out.println(form.getUnidade());
+        Optional<Unidade> uni = unidadeRepository.findById(form.getUnidade());
+        if(uni.isPresent()){
+            unidade = uni.get();       
+        }else{
+            return ResponseEntity.badRequest().build();
+        }
+
+        Optional<Setor> set = setorRepository.findById(form.getSetor());
+        if(set.isPresent()){
+            setor = set.get();       
+        }else{
+            return ResponseEntity.badRequest().build();
+        }
+
+        Optional<Solicitacao> optional = solicitacaoRepository.findById(id);
+		if(optional.isPresent()) {
+			Solicitacao solicitacao = form.atualizar(optional.get(), unidade, setor);
+			return ResponseEntity.ok(new SolicitacaoDTO(solicitacao));
+		}
+		return ResponseEntity.notFound().build();
     }
 }
