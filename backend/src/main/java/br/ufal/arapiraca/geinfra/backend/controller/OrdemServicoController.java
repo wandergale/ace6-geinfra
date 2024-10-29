@@ -11,14 +11,19 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.ufal.arapiraca.geinfra.backend.controller.dto.OrdemServicoDTO;
+import br.ufal.arapiraca.geinfra.backend.controller.dto.SetorDTO;
+import br.ufal.arapiraca.geinfra.backend.controller.form.AtualizaOrdemServicoForm;
+import br.ufal.arapiraca.geinfra.backend.controller.form.AtualizaSetorForm;
 import br.ufal.arapiraca.geinfra.backend.controller.form.OrdemServicoForm;
 import br.ufal.arapiraca.geinfra.backend.model.OrdemServico;
+import br.ufal.arapiraca.geinfra.backend.model.Setor;
 import br.ufal.arapiraca.geinfra.backend.model.Solicitacao;
 import br.ufal.arapiraca.geinfra.backend.repository.OrdemServicoRepository;
 import br.ufal.arapiraca.geinfra.backend.repository.SolicitacaoRepository;
@@ -35,7 +40,7 @@ public class OrdemServicoController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<OrdemServico> cadastrar(@RequestBody @Validated OrdemServicoForm form, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<OrdemServicoDTO> cadastrar(@RequestBody @Validated OrdemServicoForm form, UriComponentsBuilder uriBuilder){
         
         Solicitacao solicitacao = new Solicitacao();
 
@@ -50,7 +55,7 @@ public class OrdemServicoController {
         ordemServicoRepository.save(ordemServico);
 
         URI uri = uriBuilder.path("ordem-servico").buildAndExpand(solicitacao.getId()).toUri();
-        return ResponseEntity.created(uri).body(ordemServico);
+        return ResponseEntity.created(uri).body(new OrdemServicoDTO(ordemServico));
     }
 
     @GetMapping("/{id}")
@@ -67,5 +72,25 @@ public class OrdemServicoController {
         List<OrdemServico> lista = ordemServicoRepository.findAll();
         
         return OrdemServicoDTO.converter(lista);
+    }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<OrdemServicoDTO> atualizar(@PathVariable Long id, @RequestBody AtualizaOrdemServicoForm form){
+        Solicitacao solicitacao = new Solicitacao();
+
+        Optional<Solicitacao> sol = solicitacaoRepository.findById(form.getSolicitacao());
+        if(sol.isPresent()){
+            solicitacao = sol.get();       
+        }else{
+            return ResponseEntity.badRequest() .build();
+        }
+        
+        Optional<OrdemServico> optional = ordemServicoRepository.findById(id);
+		if(optional.isPresent()) {
+			OrdemServico ordemServico = form.atualizar(optional.get(), solicitacao);
+			return ResponseEntity.ok(new OrdemServicoDTO(ordemServico));
+		}
+		return ResponseEntity.notFound().build();
     }
 }

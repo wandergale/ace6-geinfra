@@ -44,7 +44,7 @@ public class SolicitacaoController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<Solicitacao> cadastrar(@RequestBody @Validated SolicitacaoForm form, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<SolicitacaoDTO> cadastrar(@RequestBody @Validated SolicitacaoForm form, UriComponentsBuilder uriBuilder){
         Unidade unidade = new Unidade();
         Setor setor = new Setor();
 
@@ -66,7 +66,7 @@ public class SolicitacaoController {
         solicitacaoRepository.save(solicitacao);
 
         URI uri = uriBuilder.path("/solicitacao/{id}").buildAndExpand(solicitacao.getId()).toUri();
-        return ResponseEntity.created(uri).body(solicitacao);
+        return ResponseEntity.created(uri).body(new SolicitacaoDTO(solicitacao));
     }
 
     @GetMapping("/{id}")

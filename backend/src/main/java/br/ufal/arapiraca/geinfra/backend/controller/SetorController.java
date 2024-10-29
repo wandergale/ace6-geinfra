@@ -32,12 +32,12 @@ public class SetorController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<Setor> cadastrar(@RequestBody @Valid SetorForm form, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<SetorDTO> cadastrar(@RequestBody @Valid SetorForm form, UriComponentsBuilder uriBuilder){
         Setor setor = form.converter();
         setorRepository.save(setor);
 
         URI uri = uriBuilder.path("/setor/{id}").buildAndExpand(setor.getId()).toUri();
-        return ResponseEntity.created(uri).body(setor);
+        return ResponseEntity.created(uri).body(new SetorDTO(setor));
     }
 
     @GetMapping("/{id}")
