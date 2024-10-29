@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import br.ufal.arapiraca.geinfra.backend.model.Unidade;
 
 public class UnidadeDTO {
- private Long id;
+    private Long id;
     private String nome;
 
     public UnidadeDTO(Unidade unidade) {
