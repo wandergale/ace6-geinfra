@@ -18,12 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.ufal.arapiraca.geinfra.backend.controller.dto.OrdemServicoDTO;
-import br.ufal.arapiraca.geinfra.backend.controller.dto.SetorDTO;
 import br.ufal.arapiraca.geinfra.backend.controller.form.AtualizaOrdemServicoForm;
-import br.ufal.arapiraca.geinfra.backend.controller.form.AtualizaSetorForm;
 import br.ufal.arapiraca.geinfra.backend.controller.form.OrdemServicoForm;
 import br.ufal.arapiraca.geinfra.backend.model.OrdemServico;
-import br.ufal.arapiraca.geinfra.backend.model.Setor;
 import br.ufal.arapiraca.geinfra.backend.model.Solicitacao;
 import br.ufal.arapiraca.geinfra.backend.repository.OrdemServicoRepository;
 import br.ufal.arapiraca.geinfra.backend.repository.SolicitacaoRepository;
