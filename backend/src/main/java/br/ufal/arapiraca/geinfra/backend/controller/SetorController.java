@@ -10,12 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.ufal.arapiraca.geinfra.backend.controller.dto.SetorDTO;
+import br.ufal.arapiraca.geinfra.backend.controller.form.AtualizaSetorForm;
 import br.ufal.arapiraca.geinfra.backend.controller.form.SetorForm;
 import br.ufal.arapiraca.geinfra.backend.model.Setor;
 import br.ufal.arapiraca.geinfra.backend.repository.SetorRepository;
@@ -52,5 +54,16 @@ public class SetorController {
         List<Setor> lista = setorRepository.findAll();
         
         return SetorDTO.converter(lista);
+    }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<SetorDTO> atualizar(@PathVariable Long id, @RequestBody AtualizaSetorForm form) {
+        Optional<Setor> optional = setorRepository.findById(id);
+		if(optional.isPresent()) {
+			Setor setor = form.atualizar(id, optional.get());
+			return ResponseEntity.ok(new SetorDTO(setor));
+		}
+		return ResponseEntity.notFound().build();
     }
 }
