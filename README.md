@@ -6,7 +6,6 @@ O objetivo do projeto é desenvolver um sistema que auxilie a equipe da Gestão 
 ### 📋 Pré-requisitos
 Para executar este projeto é preciso ter:
 - JDK 17 instalado em sua máquina. Para instalá-lo, você pode seguir as instruções disponíveis [aqui](https://www.openlogic.com/openjdk-downloads);
-- A versão mais recente do Mavem que você pode baixar [aqui](https://maven.apache.org/download.cgi);
 - Uma IDE de sua preferência, como por exemplo o VS Code, ou o Eclipse.
 
 ### 🚀 Executando
