@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -67,4 +68,15 @@ public class UnidadeController {
 		}
 		return ResponseEntity.notFound().build();
     }
+
+    @DeleteMapping("/{id}")
+	@Transactional
+	public ResponseEntity<UnidadeDTO> deletar(@PathVariable Long id) {
+		Optional<Unidade> optional = unidadeRepository.findById(id);
+		if(optional.isPresent()) {
+			unidadeRepository.deleteById(id);
+			return ResponseEntity.ok().build();
+		}
+		return ResponseEntity.notFound().build();
+	}
 }
