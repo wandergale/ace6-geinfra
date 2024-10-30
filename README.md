@@ -4,7 +4,10 @@ O objetivo do projeto é desenvolver um sistema que auxilie a equipe da Gestão 
 
 ## Backend
 ### 📋 Pré-requisitos
-Precisa ter o Python instalado em sua máquina. Para instalá-lo, você pode seguir as instruções disponíveis [aqui](https://www.python.org/downloads/).
+Para executar este projeto é preciso ter:
+- JDK 17 instalado em sua máquina. Para instalá-lo, você pode seguir as instruções disponíveis [aqui](https://www.openlogic.com/openjdk-downloads);
+- A versão mais recente do Mavem que você pode baixar [aqui](https://maven.apache.org/download.cgi);
+- Uma IDE de sua preferência, como por exemplo o VS Code, ou o Eclipse.
 
 ### 🚀 Executando
 1. Clone o repositório
@@ -15,37 +18,16 @@ git clone https://github.com/cpt-ufal-arapiraca/ace6-geinfra.git
 ```bash
 cd backend
 ```
-3. Crie um ambiente virtual:
-```bash
-python3 -m venv .env
-```
-Pode-se usar o comando `python` caso seja o Python 2 instalado. <br>
-Caso não tenha o módulo venv instalado, pode ser instalado pelo comando informado no erro e executar o comando acima novamente. <br><br>
+3. Buildando o projeto:<br>
+O Eclipse IDE já vem com o Maven instalado e configurado, portanto, assim que você importar o projeto para o Eclipse, ele irá reconhecer o arquivo `pom.xml`, intalar as dependências necessárias e compilar o projeto. Já no VS Code, você precisará instalar a extensão Java Extension Package, que é um pacote com algumas extensões úteis para o desenvolvimento Java. Dentro desse pacote, já virá a extensão para rodar os comandos Maven. Caso seja necessário instalar o Maven a parte, você pode fazer por esse link: https://maven.apache.org/download.cgi;
 
-4. Ative o ambiente virtual:
-```bash
-source .env/Scripts/activate
-```
-5. Navegue até a pasta backend
-```bash
-cd backend
-```
-6. Instale os requirements:
-```bash
-pip install -r requirements.txt
-```
-7. Navegue até a pasta api
-```bash
-cd api
-```
-
-8. Rode o comando a seguir para inicializar o projeto:
-```bash
-py manage.py runserver #Ou python manage.py runserver # no linux e Mac
-```
-
-9. Acesse o endereço http://localhost:8000/solicitacoes/ no navegador <br>
-Deve ser possível visualizar a seguinte mensagem: "Hello, world. You're at the polls index."
+4. Abra o arquivo BackendApplication.java, localizado na pasta: src/main/java/br/ufal/arapiraca/geinfra/backend;
+  
+5. Execute este arquivo;
+6. Uma guia do terminal deve ser aberta e mostrar o projeto Spring sendo inicializado.
+7. A API deve estar disponível no endpoint: http://localhost:8080
+8. Utilize alguma ferramenta para consultas em APIs, como o Insomnia ou o Postman.
+9. Caso utilize o Insomnia, baixe o arquivo `GEINFRA0.0.1.json` localizado na pasta `/docs` e importe a configuração dos endpoints.
 
 ## Webapp
 ### 📋 Pré-requisitos
