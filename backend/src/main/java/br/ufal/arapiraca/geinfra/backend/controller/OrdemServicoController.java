@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -90,4 +91,15 @@ public class OrdemServicoController {
 		}
 		return ResponseEntity.notFound().build();
     }
+
+    @DeleteMapping("/{id}")
+	@Transactional
+	public ResponseEntity<OrdemServicoDTO> deletar(@PathVariable Long id) {
+		Optional<OrdemServico> optional = ordemServicoRepository.findById(id);
+		if(optional.isPresent()) {
+			ordemServicoRepository.deleteById(id);
+			return ResponseEntity.ok().build();
+		}
+		return ResponseEntity.notFound().build();
+	}
 }

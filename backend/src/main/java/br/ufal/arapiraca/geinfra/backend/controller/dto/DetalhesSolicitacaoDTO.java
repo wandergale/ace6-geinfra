@@ -35,7 +35,9 @@ public class DetalhesSolicitacaoDTO {
         this.servico = solicitacao.getServico();
         this.unidade = solicitacao.getUnidade().getId();
         this.setor = solicitacao.getSetor().getId();
-        this.ordemServico = solicitacao.getOrdemServico().getId();
+        if(solicitacao.getOrdemServico() != null){
+            this.ordemServico = solicitacao.getOrdemServico().getId();
+        }
     }
 
     public Long getId() {
