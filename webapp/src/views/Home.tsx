@@ -9,7 +9,7 @@ function Home() {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <img 
-              src="/logo-ufal.png" 
+              src="https://ufal.br/ufal/comunicacao/identidade-visual/brasao/sigla/png.png" 
               alt="Logo UFAL" 
               className="h-12 w-auto"
             />
