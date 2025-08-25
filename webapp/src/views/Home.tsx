@@ -5,7 +5,7 @@ function Home() {
   return (
     <div className="text-center">
       <h1 className="text-5xl font-bold text-heading my-8">
-        Home GEINFRA
+        GEINFRA
       </h1>
 
       <nav className="mt-10">
