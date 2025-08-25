@@ -1,0 +1,122 @@
+:root {
+  --ufal-blue: #003366;
+  --ufal-blue-dark: #002244;
+  --ufal-blue-light: #004488;
+  
+  --ufal-green: #006633;
+  --ufal-green-dark: #004422;
+  --ufal-green-light: #008844;
+  
+  --ufal-orange: #FF6600;
+  --ufal-orange-dark: #CC5500;
+  --ufal-orange-light: #FF8833;
+  
+  --ufal-gray: #666666;
+  --ufal-gray-light: #F5F5F5;
+}
+
+.bg-ufal-blue {
+  background-color: var(--ufal-blue);
+}
+
+.bg-ufal-blue-dark {
+  background-color: var(--ufal-blue-dark);
+}
+
+.bg-ufal-green {
+  background-color: var(--ufal-green);
+}
+
+.bg-ufal-green-dark {
+  background-color: var(--ufal-green-dark);
+}
+
+.bg-ufal-orange {
+  background-color: var(--ufal-orange);
+}
+
+.bg-ufal-orange-dark {
+  background-color: var(--ufal-orange-dark);
+}
+
+.text-ufal-blue {
+  color: var(--ufal-blue);
+}
+
+.text-ufal-green {
+  color: var(--ufal-green);
+}
+
+.text-ufal-orange {
+  color: var(--ufal-orange);
+}
+
+.hover\:bg-ufal-blue-dark:hover {
+  background-color: var(--ufal-blue-dark);
+}
+
+.hover\:bg-ufal-green-dark:hover {
+  background-color: var(--ufal-green-dark);
+}
+
+.hover\:bg-ufal-orange-dark:hover {
+  background-color: var(--ufal-orange-dark);
+}
+
+.geinfra-card {
+  background: linear-gradient(135deg, var(--ufal-blue) 0%, var(--ufal-blue-light) 100%);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 51, 102, 0.2);
+}
+
+.geinfra-button {
+  transition: all 0.3s ease;
+  transform: translateY(0);
+}
+
+.geinfra-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsividade  */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  header .flex {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  header .space-x-4 {
+    margin-top: 1rem;
+  }
+}
+
+/* Animações suaves */
+.fade-in {
+  animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ufal-logo {
+  filter: brightness(1.1);
+  transition: filter 0.3s ease;
+}
+
+.ufal-logo:hover {
+  filter: brightness(1.3);
+}
