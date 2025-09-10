@@ -6,9 +6,11 @@ type Props = {
     placeholder?: string,
     label?: string,
     readOnly?: boolean
+    value?: string
+    onChange?: (value: string) => void
 }
 
-function InputComponent({className, placeholder, label, readOnly}: Props) {
+function InputComponent({className, placeholder, label, readOnly, value, onChange}: Props) {
 
     return (
         <span className={`w-full ${className}`}>
@@ -20,6 +22,8 @@ function InputComponent({className, placeholder, label, readOnly}: Props) {
                 placeholder={placeholder}
                 className={`w-full ${readOnly && 'bg-gray-200'}`}
                 readOnly={readOnly}
+                value={value}
+                onChange={(e) => onChange?.(e.target.value)}
             />
         </span>
     )
