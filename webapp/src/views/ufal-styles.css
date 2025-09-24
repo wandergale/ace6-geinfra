@@ -69,6 +69,22 @@
   box-shadow: 0 8px 32px rgba(0, 51, 102, 0.2);
 }
 
+button[type="submit"].geinfra-button {
+  background-color: var(--ufal-blue) !important;
+  color: white !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+button[type="submit"].geinfra-button:hover {
+  background-color: var(--ufal-blue-dark) !important;
+}
+
+button[type="submit"].geinfra-button:disabled {
+  background-color: var(--ufal-blue) !important;
+  opacity: 0.7 !important;
+}
+
 .geinfra-button {
   transition: all 0.3s ease;
   transform: translateY(0);
