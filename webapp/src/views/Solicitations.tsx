@@ -229,7 +229,7 @@ function Solicitations() {
                 type="submit"
                 disabled={isLoading}
               >
-                {isLoading ? 'Salvando...' : 'Salvar'}
+                {isLoading ? 'Enviando...' : 'Enviar'}
               </Button>
             </footer>
           </form>
