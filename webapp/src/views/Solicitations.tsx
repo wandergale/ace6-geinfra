@@ -120,8 +120,8 @@ function Solicitations() {
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8 fade-in">
-        <nav className="py-4">
+      <main className="container mx-auto px-4 py-1 fade-in">
+        <nav className="py-2">
           <NavBreadcrumb/>
         </nav>
 
