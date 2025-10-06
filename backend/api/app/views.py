@@ -11,15 +11,8 @@ def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
 
 
-# View para criar nova solicitação (POST)
-class SolicitacaoCreateView(generics.CreateAPIView):
-    queryset = Solicitacao.objects.all()
+# View para listar (GET) e criar (POST) solicitações
+class SolicitacaoListCreateView(generics.ListCreateAPIView):
+    queryset = Solicitacao.objects.all().order_by('-id')  # Ordena por ID decrescente (mais recentes primeiro)
     serializer_class = SolicitacaoSerializer
     permission_classes = [AllowAny]  # Permite acesso sem autenticação
-
-
-# View para listar solicitações (GET)
-class SolicitacaoListView(generics.ListAPIView):
-    queryset = Solicitacao.objects.all()
-    serializer_class = SolicitacaoSerializer
-    permission_classes = [AllowAny]
