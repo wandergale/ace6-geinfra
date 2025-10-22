@@ -48,7 +48,6 @@ function Solicitations() {
   const handleSaveClick = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     
-    // Validação básica
     const requiredFields: (keyof SolicitacaoData)[] = [
       'nome_solicitante', 'setor_solicitante', 'unidade', 
       'local_servico', 'tipo_servico', 'tipo_manutencao', 'descricao_problema'
@@ -77,7 +76,6 @@ function Solicitations() {
         alert('Solicitação criada com sucesso!');
         console.log('Solicitação salva:', data);
         
-        // Limpar formulário
         setFormData({
           nome_solicitante: '',
           setor_solicitante: '',
@@ -105,16 +103,16 @@ function Solicitations() {
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-ufal-blue shadow-md">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-4">
+        <div className="container mx-auto px-4 py-4 flex flex-col sm:flex-row items-center sm:justify-between gap-4 sm:gap-0">
+          <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4">
             <img 
               src={logo} 
               alt="Logo UFAL" 
-              className="h-12 w-auto ufal-logo"
+              className="h-10 sm:h-12 w-auto ufal-logo"
             />
-            <div className="text-white">
-              <h2 className="text-lg font-semibold">Universidade Federal de Alagoas</h2>
-              <p className="text-sm opacity-90">Sistema GEINFRA</p>
+            <div className="text-white text-center sm:text-left">
+              <h2 className="text-base sm:text-lg font-semibold">Universidade Federal de Alagoas</h2>
+              <p className="text-xs sm:text-sm opacity-90">Sistema GEINFRA</p>
             </div>
           </div>
         </div>
@@ -125,17 +123,18 @@ function Solicitations() {
           <NavBreadcrumb/>
         </nav>
 
-        <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
-          <h1 className="text-5xl font-bold text-ufal-blue mb-8 text-center">
+        <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 lg:p-8 mb-8">
+          <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-ufal-blue mb-6 sm:mb-8 text-center">
             Nova Solicitação
           </h1>
 
           <form onSubmit={(e) => handleSaveClick(e)} className="mt-8">
-            <div className="flex mb-6 gap-x-10">
+            {/* Nome e Setor - Stack em mobile, lado a lado em desktop */}
+            <div className="flex flex-col lg:flex-row mb-6 gap-6 lg:gap-10">
               <InputComponent
                 label="Nome do Solicitante (*)"
                 placeholder="Nome do solicitante"
-                className="basis-2/3"
+                className="w-full lg:basis-2/3"
                 value={formData.nome_solicitante}
                 onChange={(value) => handleInputChange('nome_solicitante', value)}
               />
@@ -143,36 +142,41 @@ function Solicitations() {
                 label="Setor do Solicitante (*)"
                 placeholder="Setor"
                 items={['Setor A', 'Setor B', 'Setor C', 'Setor D']}
-                className="basis-1/3"
+                className="w-full lg:basis-1/3"
                 value={formData.setor_solicitante}
                 onChange={(value) => handleInputChange('setor_solicitante', value)}
               />
             </div>
-            <div className="flex mb-6 gap-x-10">
-              <span className="flex gap-x-10 basis-2/3">
+
+            {/* Unidade, Local e Data */}
+            <div className="flex flex-col lg:flex-row mb-6 gap-6 lg:gap-10">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-10 w-full lg:basis-2/3">
                 <SelectComponent
                   label="Unidade (*)"
                   placeholder="Unidade"
                   items={['Campus Arapiraca', 'Polo Palmeira', 'Polo Penedo']}
+                  className="w-full"
                   value={formData.unidade}
                   onChange={(value) => handleInputChange('unidade', value)}
                 />
                 <InputComponent
                   label="Local do serviço (*)"
                   placeholder="Local do serviço"
+                  className="w-full"
                   value={formData.local_servico}
                   onChange={(value) => handleInputChange('local_servico', value)}
                 />
-              </span>
+              </div>
               <InputComponent
                 label="Data da Solicitação"
                 placeholder={new Date().toLocaleString('pt-BR')}
-                className=" basis-1/3"
+                className="w-full lg:basis-1/3"
                 readOnly
               />
             </div>
             
-            <section className="flex items-stretch my-10 bg-ufal-gray-light rounded-lg p-6">
+            {/* Radio Groups - Stack em mobile e tablet, lado a lado em desktop */}
+            <section className="flex flex-col lg:flex-row items-stretch my-10 bg-ufal-gray-light rounded-lg p-4 sm:p-6 gap-6 lg:gap-0">
               <div className="w-full">
                 <RadioGroupComponent
                   label="Tipo de Serviço (*)"
@@ -183,13 +187,16 @@ function Solicitations() {
                 {formData.tipo_servico === 'Outro' && (
                   <Input
                     placeholder="Especifique o tipo de serviço..."
-                    className="w-1/2 mt-3"
+                    className="w-full sm:w-3/4 lg:w-1/2 mt-3"
                     value={formData.outro_servico || ''}
                     onChange={(e) => handleInputChange('outro_servico', e.target.value)}
                   />
                 )}
               </div>
-              <span className="bg-ufal-blue w-0.5 mx-10 opacity-30"/>
+              
+              {/* Separador - Horizontal em mobile, vertical em desktop */}
+              <div className="bg-ufal-blue h-px lg:h-auto lg:w-0.5 mx-0 lg:mx-10 opacity-30"/>
+              
               <div className="w-full">
                 <RadioGroupComponent
                   label="Tipo de Manutenção (*)"
@@ -209,23 +216,24 @@ function Solicitations() {
               />
             </div>
 
-            <footer className="flex justify-between items-center py-6 border-t border-gray-200">
+            {/* Footer responsivo */}
+            <footer className="flex flex-col sm:flex-row justify-between items-center py-6 border-t border-gray-200 gap-4 sm:gap-0">
               <Button
                 variant="ghost"
                 size="icon"
                 type="button"
                 onClick={goBack}
-                className="geinfra-button hover:bg-gray-100"
+                className="geinfra-button hover:bg-gray-100 order-2 sm:order-1"
                 disabled={isLoading}
               >
                 <FaAngleLeft
                   className="cursor-pointer"
-                  size={40}
+                  size={32}
                   color="var(--ufal-blue)"
                 />
               </Button>
               <Button
-                className="bg-ufal-blue hover:bg-ufal-blue-dark h-14 font-bold px-20 text-white geinfra-button"
+                className="bg-ufal-blue hover:bg-ufal-blue-dark h-12 sm:h-14 font-bold px-12 sm:px-20 text-white geinfra-button w-full sm:w-auto order-1 sm:order-2"
                 type="submit"
                 disabled={isLoading}
               >
