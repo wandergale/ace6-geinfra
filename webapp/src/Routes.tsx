@@ -6,6 +6,7 @@ import {
 
 import Home from "./views/Home"
 import Solicitations from "./views/Solicitations"
+import Dashboard from "./views/Dashboard"
 
 
 export default function Routes(){
@@ -16,6 +17,7 @@ export default function Routes(){
             <RoutesContainer>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/solicitations" element={<Solicitations/>}/>
+                <Route path="/dashboard" element={<Dashboard/>}/>
             </RoutesContainer>
         </BrowserRouter>
     )

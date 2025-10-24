@@ -5,9 +5,11 @@ type Props = {
     items: string[],
     placeholder?: string,
     label?: string,
+    value?: string,
+    onChange?: (value: string) => void
 }
 
-function RadioGroupComponent({items, label}: Props) {
+function RadioGroupComponent({items, label, value, onChange}: Props) {
 
     return (
         <span>
@@ -15,13 +17,11 @@ function RadioGroupComponent({items, label}: Props) {
                 {label}
             </Label>
 
-
-            {/* Create a grid here with 3 columns */}
             <RadioGroup
                 id="radio-group"
-                defaultValue={items[0]}
+                value={value}
                 className="mt-2"
-                onValueChange={(v) => console.log(v)}
+                onValueChange={onChange}
             >
                 {
                     items.map((v, i) => (

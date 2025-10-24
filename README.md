@@ -99,7 +99,7 @@ Os testes ainda não foram implementados à aplicação...
 Ainda em desenvolvimento...
 
 ## ✒️ Autores
-
+* **Wanderson Costa Oliveira** - *Desenvolvimento Full Stack*
 * **Cayo Nikolas Ferreira Santos** - *Gerência e documentação*
 * **Francisco Racklyn Sotero dos Santos** - *Desenvolvimento frontend*
 * **Lucas Barbosa Leite Silva** - *Desenvolvimento backend*
